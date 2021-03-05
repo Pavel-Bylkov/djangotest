@@ -1,20 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'blog/base_blog.html' %}
+
+{% block title %}
+    Blog
+{% endblock %}
+
+{% block content %}
     <h1>Blog</h1>
     {% for blog in blogs %}
     <p>
         {{ blog.name }} - {{ blog.tagline }}
+        {# This is a comment #}
     </p>
     {% endfor %}
     <h1>Autors</h1>
     {% for autor in autors %}
     <p>
-        {{ autor.name }} - {{ autor.email }}
+        {% if autor.name == 'Bil Gates' %}
+            <p>Welcome to the weekend!</p>
+        {% else %}
+            <p>Get back to work.</p>
+        {% endif %}
+        {{ autor.name | lower }} - {{ autor.email }}
     </p>
     {% endfor %}
     <h1>Entries</h1>
@@ -23,5 +29,4 @@
         {{ entry.headline }}
     </p>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
