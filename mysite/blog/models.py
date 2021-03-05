@@ -4,6 +4,7 @@ class Blog(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название')
     tagline = models.TextField(verbose_name='Заголовок')
 
+
     def __str__(self):
         return '{}'.format(self.name)
 
@@ -24,8 +25,9 @@ class Entry(models.Model):
     headline = models.CharField(max_length=255, verbose_name='Заголовок')
     body_text = models.TextField()
     pub_date = models.DateField(verbose_name='Дата публикации')
+    published = models.BooleanField(default=True)
     mod_date = models.DateField()
-    authors = models.ManyToManyField(Author)
+    authors = models.ManyToManyField(Author, related_name="posts")
     number_of_comments = models.IntegerField()
     number_of_pingbacks = models.IntegerField()
     rating = models.IntegerField(verbose_name='Рейтинг')
